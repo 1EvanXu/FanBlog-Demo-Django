@@ -1,0 +1,105 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IP 查询</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">IP Query</a>
+    </div>
+
+</nav>
+<div class="container">
+    <div class="row">
+    <div class="col-xs-8 col-md-offset-2">
+        <h1>IP 查询</h1><br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="form-inline" role="form">
+
+                    <div class="row">
+                        <div class="form-group col-md-8 col-md-offset-2">
+                            <label for="ip-or-domain" style="color: lightslategrey">请输入IP地址或者域名</label>&nbsp;
+                            <input type="text" name="ip_or_domain" class="form-control" maxlength="50" id="ip-or-domain" />
+                            <button type="button" class="btn btn-info btn-sm" id="do-ip-query">查询</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="query-result" class="panel-body text-center">
+
+            </div>
+            
+        </div>
+
+    </div>
+    </div>
+</div>
+<script>
+    $("#do-ip-query").click(
+        function () {
+            var queryResult = $("#query-result");
+            var input = $("#ip-or-domain");
+
+            if (input.val().length === 0) {
+                return;
+            }
+
+            queryResult.empty();
+            queryResult.append("<img src=\"/static/dist/img/loading-circle.gif\">");
+            input.attr('disabled', 'disabled');
+            $("#do-ip-query").attr('disabled', 'disabled');
+            $.ajax({
+                url: '/ip/query/',
+                type: 'GET',
+                data: {'ipOrDomain': input.val()},
+                dataType: 'json',
+                success: function (r) {
+                    if (r.success === undefined) {
+                        alert('message:' + r.msg);
+                        return;
+                    } else if (r.success === 0) {
+                        queryResult.append('<p>Failed to query !</p>');
+                        return;
+                    }
+                    var result = "<table class=\"table text-center\">\n" +
+                        "                        <caption><h4>查询结果</h4></caption>\n" +
+                        "                        <thead>\n" +
+                        "                            <tr>\n" +
+                        "                                <th style=\"text-align: center\">IP</th>\n" +
+                        "                                <th style=\"text-align: center\">所属城市</th>\n" +
+                        "                                <th style=\"text-align: center\">所属国家</th>\n" +
+                        "                            </tr>\n" +
+                        "                        </thead>\n" +
+                        "                        <tbody>\n" +
+                        "                            <tr class=\"success\">\n" +
+                        "                                <td>" + r.ip + "</td>\n" +
+                        "                                <td>" + r.city + "</td>\n" +
+                        "                                <td>" + r.country + "</td>\n" +
+                        "                            </tr>\n" +
+                        "                        </tbody>\n" +
+                        "                    </table>";
+
+                    queryResult.append(result);
+
+                },
+
+                complete: function () {
+                    queryResult.children('img').remove();
+                    input.removeAttr('disabled', 'disabled');
+                    $("#do-ip-query").removeAttr('disabled', 'disabled');
+                }
+            });
+        }
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{% extends 'backstage/generic.html' %}
+{% load staticfiles %}
+{% block title %}类别管理-ONE Blog{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>类别管理</h1><br>
+            {% if result %}
+                {% if result|slice:":2" == 'OK'%}
+                    <div id="myAlert" class="alert alert-success">
+                {% else %}
+                    <div id="myAlert" class="alert alert-warning">
+                {% endif %}
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>{{ result }}</strong>
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- Main content -->
+        <section class="content container-fluid">
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <h3 class="box-title">所有类别</h3>
+                            <button class="btn btn-xs btn-default pull-right"
+                                    data-toggle="modal" data-target="#createModal">新建</button>
+                        </div>
+
+                        <!--modal of create a new category-->
+                        <div class="modal fade" id="createModal" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form id="form_of_create_category" class="form-horizontal" action="{% url 'backstage:create_new_category' %}" role="form" method="post">
+                                    {% csrf_token %}
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">新建类别</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="category_name" class="col-sm-2 control-label">类别名称</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="category_name" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category_details" class="col-sm-2 control-label">类别描述</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" id="category_details" rows="3" name="details"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="category_submit" type="submit" class="btn btn-primary btn-sm">提交</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.modal -->
+
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>名称</th>
+                                    <th>文章数</th>
+                                    <th style="width: 150px">创建时间</th>
+                                    <th style="width: 20px"></th>
+                                </tr>
+                                {% for item in categories %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ item.category_name }}</td>
+                                    <td>
+                                        <span class="label label-info">{{ item.published_article.count|default:0 }}</span>
+                                    </td>
+                                    <td><span class="badge">{{ item.created_time|date:"Y-m-d H:i:s" }}</span></td>
+                                    <td>
+                                        <span><a class="fa fa-trash" href="{% url 'backstage:delete_category' item.id %}"></a></span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+						<ul class="pagination pagination-sm no-margin pull-right">
+						    <li>
+                                {% if categories.has_previous %}
+                                <a href="{% url 'backstage:category_pages' categories.previous_page_number %}">&laquo;</a>
+                                {% else %}
+                                <a href="#">&laquo;</a>
+                                {% endif %}
+                            </li>
+                            {% for page in pages %}
+                                {% if page == categories.number %}
+                                <li><a class="active" href="#">{{ page }}</a></li>
+                                {% else %}
+							    <li><a href="{% url 'backstage:category_pages' page %}">{{ page }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+							<li>
+                                {% if categories.has_next %}
+                                <a href="{% url 'backstage:category_pages' categories.next_page_number %}">&raquo;</a>
+                                {% else %}
+                                <a href="#">&raquo;</a>
+                                {% endif %}
+                            </li>
+						</ul>
+					</div>
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!--/.col-->
+
+        </div>
+            <!--/.row-->
+        </section>
+        <!-- /.content -->
+{% endblock %}
+

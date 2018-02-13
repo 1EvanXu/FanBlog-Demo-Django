@@ -1,0 +1,67 @@
+{% extends 'blog/basic.html' %}
+{% load staticfiles %}
+{% block title %}文章分类－徐一凡的博客{% endblock %}
+{% block content_header %}
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {{ category_name }}
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'blog:blog_index' %}"><i class="fa fa-home"></i> Home</a></li>
+        </ol>
+    </section>
+{% endblock %}
+
+
+{% block content_body %}
+    {% for puba in pub_articles %}
+    <div class="box box-solid">
+        <div class="box-header">
+            <h3>{{ puba.article.title }}</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body text-gray">
+            <a href="{{ puba.url }}">阅读全文<i class="fa fa-angle-double-right"></i></a>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <table width="70%" style="color: gray">
+                <tr>
+                    <td width="10%"><span class="badge">{{ puba.article.get_type_display }}</span></td>
+                    <td width="50%"><span class="fa fa-clock-o">&nbsp;</span>{{ puba.pub_time }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- /.box -->
+    {% endfor %}
+
+    <div class="text-center">
+
+        <ul class="pagination pagination-sm no-margin pull-right">
+            <li>
+                {% if pub_articles.has_previous %}
+                    <a href="{% url 'blog:category_view_pages' c=category_id p=pub_articles.previous_page_number %}">&laquo;</a>
+                {% else %}
+                    <a href="#">&laquo;</a>
+                {% endif %}
+            </li>
+            {% for page in pages %}
+                {% if page == pub_articles.number %}
+                    <li><a class="active" href="#">{{ page }}</a></li>
+                {% else %}
+                    <li><a href="{% url 'blog:category_view_pages' c=category_id p=page %}">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                {% if pub_articles.has_next %}
+                    <a href="{% url 'blog:category_view_pages' c=category_id p=articles.next_page_number %}">&raquo;</a>
+                {% else %}
+                    <a href="#">&raquo;</a>
+                {% endif %}
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}

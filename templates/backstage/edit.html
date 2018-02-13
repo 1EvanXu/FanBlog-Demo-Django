@@ -1,0 +1,275 @@
+{% extends 'backstage/generic.html' %}
+{% load staticfiles %}
+{% block title %}写博客-ONE Blog{% endblock %}
+
+{% block additionalCss %}
+    <link rel="stylesheet" href="{% static 'editor-md/css/editormd.css' %}">
+{% endblock %}
+
+{% block content %}
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                写博客
+                <small class="pull-right">
+                    <a class="btn btn-default btn-sm " href="{% url 'backstage:full_editor' %}">
+                        <i class="fa fa-paint-brush">&nbsp;</i>切换完整编辑器
+                    </a>
+                </small>
+                <small class="pull-right">
+                    <a class="btn btn-default btn-sm " href="{% url 'backstage:edit_article' new='new' %}">
+                        <i class="fa fa-pencil">&nbsp;</i>写新文章
+                    </a>
+                </small>
+            </h1>
+
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <!--row-->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="box box-info">
+
+                        <div class="box-header">
+                            <div class="form-control-static">
+                                <div class="input-group">
+                                    <span class="input-group-addon">博客标题</span>
+                                    <input id="blog_title" class="form-control" type="text" name="blog_title"
+                                           style="width: 100%" placeholder="不超过30个字" value="{{ title }}" required/>
+                                </div>
+                            </div>
+                            <small id="last_saved_time" style="color: gray">上次保存时间</small>
+                        </div>
+                        <!-- /.box-header -->
+
+                        <div id="test-editormd" class="box-body pad"></div>
+
+                        <div class="box-footer">
+                            <button id="save-content" class="btn btn-default">保存草稿</button>
+                            <button id="pub-article" class="btn btn-primary" data-toggle="modal" data-target="#pubModal">
+                                发布博客
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!--/.cols-->
+            </div>
+            <!--/.row-->
+
+            <div class="modal fade" id="pubModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">发布博客</h4>
+                        </div>
+                        <form class="form-horizontal" role="form" action="{% url 'backstage:publish_article' %}" method="post">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="article_title" class="col-sm-2 control-label">文章标题</label>
+                                    <div class="col-sm-10">
+                                        <input id="article_title" class="form-control" type="text" name="article_title"
+                                               style="width: 100%" value="博客标题" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="article_type" class="col-sm-2 control-label">文章类型</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="article_type" name="article_type" required>
+                                            <option value="original">原创</option>
+                                            <option value="reprint">转载</option>
+                                            <option value="translation">翻译</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categories" class="col-sm-2 control-label">文章分类</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="categories" name="categories" required>
+                                            {% for category in categories %}
+                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="abstract" class="col-sm-2 control-label">摘要</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="abstract" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">关闭</button>
+                                <button id="publish" type="button" class="btn btn-primary btn-sm">发布</button>
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <p id="article_id" hidden="hidden">{{ article_id }}</p>
+        </section>
+        <!-- /.content -->
+{% endblock %}
+
+{% block additionalScript %}
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+    });
+</script>
+<script src="{% static 'editor-md/editormd.min.js' %}"></script>
+<script>
+    var testEditor;
+    var isChanged = false;
+    var isSaved = false;
+
+    $(function() {
+        var articleId = $("#article_id").text();
+        $.ajax({
+            url: "{% url 'backstage:load_markdown' %}",
+            type: 'GET',
+            data: {'article_id': articleId},
+            dataType: 'text',
+            success: function(md){
+                testEditor = editormd("test-editormd", {
+                width   : "100%",
+                height  : 500,
+                syncScrolling : "single",
+                path    : "/static/editor-md/lib/",
+                markdown: md,
+                saveHTMLToTextarea : true,
+                htmlDecode : "style,script,iframe|on*",
+
+                onchange: function(){
+                    isSaved = false;
+                    isChanged = true;
+                    console.log('文章是否已保存:' + isSaved + "内容是否已改变:" + isChanged);
+                    }
+                });
+            },
+            error: function(){
+                alert("加载数据失败");
+                testEditor = editormd("test-editormd", {
+                width: "100%",
+                height: 500,
+                syncScrolling : "single",
+                path: "/static/editor-md/lib/",
+                saveHTMLToTextarea : true,
+                htmlDecode : "style,script,iframe|on*",
+
+                onchange: function(){
+                    isSaved = false;
+                    isChanged = true;
+                    console.log('文章是否已保存:' + isSaved + "内容是否已改变:" + isChanged);
+                    }
+                });
+            }
+
+        });
+
+        setInterval("save('auto')", 30000);
+
+
+    });
+
+
+
+    $("#pub-article").click(function(){
+        if(!isSaved){
+            alert("文章未保存！");
+            return false;
+        }
+        if(isEmpty()) {
+            alert("文章内容不能为空！");
+        }
+        document.getElementById("article_title").value = $("#blog_title").val();
+    });
+
+    $("#publish").click(function(){
+        var articleTitle = $("#article_title").val();
+        var articleId = $("#article_id").text();
+        var articleType = $("#article_type").val();
+        var category = $("#categories").val();
+        var abstarct = $("#abstract").val();
+        if (articleTitle.length > 100) {
+            alert("标题不能超过100个字!");
+            return false;
+        }
+
+        if (articleTitle.length === 0) {
+            alert("标题不能为空!");
+            return false;
+        }
+
+        var sendData = {
+            'article_id': articleId,
+            'article_title': articleTitle,
+            'article_type': articleType,
+            'categories': category,
+            'abstract': abstarct
+        };
+
+        $.ajax({
+            url: "{% url 'backstage:publish_article' %}",
+            type: 'POST',
+            data: sendData,
+            dataType: 'text',
+            success: function(r){
+              alert(r);
+              window.location.href = "{% url 'backstage:published_articles' %}"; {# 发布成功之后跳转至已发布文章页面 #}
+            },
+            error: function(e){
+                alert(e);
+                return false;
+            }
+
+        });
+    });
+
+    $("#save-content").click(function(){
+        isSaved = true;
+        isChanged = true;
+        save("manual");
+    });
+
+    function save(saveMethod){
+        if(isChanged && !isEmpty()) {
+            var article_id = $("#article_id").text();
+            var title = $("#blog_title").val();
+            var htmlText = testEditor.getHTML();
+            var markdownText = testEditor.getMarkdown();
+            var data = {
+                'article_id': article_id,
+                'title': title,
+                'htmlText': htmlText,
+                'markdownText': markdownText,
+                'saveMethod': saveMethod
+            };
+
+            $.post("{% url 'backstage:save_article' %}", data, function () {
+                var ct = new Date();
+                $("#last_saved_time").html("上次保存时间: " + ct.getHours() + ":" + ct.getMinutes() + ":" + ct.getSeconds());
+                isChanged = false;
+                console.log("保存成功");
+            });
+        }
+    }
+
+    function isEmpty() {
+        var htmlText = testEditor.getHTML();
+        var markdownText = testEditor.getMarkdown();
+
+        if (htmlText.length === 0 && markdownText.length === 0) {
+            return true;
+        }
+        return false;
+    }
+</script>
+{% endblock %}

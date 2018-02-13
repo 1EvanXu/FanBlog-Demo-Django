@@ -1,0 +1,110 @@
+{% extends 'blog/basic.html' %}
+{% load staticfiles %}
+{% block title %}徐一凡的博客{% endblock %}
+{% block content_header %}{% endblock %}
+
+{% block content_body %}
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <div style="padding-left: 15px; padding-right: 15px">
+            <h3>{{ title }}</h3>
+            <br><small id="pubId" hidden="hidden">{{ pub_id }}</small>
+            <table style="color: gray; width: 100%">
+                <tr>
+                    <td><span class="label label-default">{{ type }}</span></td>
+                    <td>分类：{{ category }}</td>
+                    <td><span class="fa fa-clock-o">&nbsp;</span>发布时间：{{ pub_time }}</td>
+                    <td>
+                    <button id="praise" class="btn btn-default btn-xs">
+                        {% if not is_voted%}
+                        <span id="praise-logo" class="fa fa-thumbs-o-up" style="cursor: pointer;">&nbsp;赞</span>
+                        {% else %}
+                        <span id="praise-logo" class="fa fa-thumbs-up" style="cursor: pointer;">&nbsp;已赞</span>
+                        {% endif %}
+                    </button>
+                        <span id="praise-number">{{ votes }}</span>
+                    </td>
+                    <td><span class="fa fa-eye">&nbsp;</span>{{ visitors }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div style="padding: 25px">
+            {% with html_file=html_file_path %}
+            {% include html_file %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <div class="box-footer clearfix">
+
+        {% if previous %}
+        <div class="pull-left">
+            <a class="btn btn-default btn-sm" href="{{ previous.url }}">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <span>{{ previous.article.title }}</span>
+        </div>
+        {% endif %}
+        {% if next %}
+         <div class="pull-right">
+             <span>{{ next.article.title }}</span>
+             <a class="btn btn-default btn-sm" href="{{ previous.url }}">
+                 <i class="fa fa-arrow-right"></i>
+             </a>
+         </div>
+        {% endif %}
+    </div>
+</div>
+
+<div id="comment-area" class="box box-solid">
+
+    <div class="box-body">
+
+        <h5>发表评论
+            <small id="submit-result" class="pull-right text-green"></small>
+        </h5>
+        {% if username != ""%}
+        <div class="text-center">
+            <p><a href="#">登录</a>之后才可以评论</p>
+        </div>
+        {% else %}
+        <div id="comment-textarea">
+            <label id="comment-content-label" for="comment-content" hidden="hidden"></label>
+            <textarea id="comment-content" class="textarea" placeholder="Message" style="width: 100%; height: 80px; font-size: 12px;
+            line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+            </textarea>
+        </div>
+        <button id="submit-comment" type="button" class="pull-right btn btn-info btn-xs">发送
+                <i class="fa fa-arrow-circle-right"></i>
+        </button>
+        {% endif %}
+    </div>
+</div>
+
+<!-- comment box -->
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <i class="fa fa-comments"></i>
+                        <h3 class="box-title">
+                            评论&nbsp;&nbsp;
+                            <small>一共{{ total_comments_number }}条评论</small>
+                        </h3>
+                    </div>
+                    <div class="box-body chat" id="chat-box">
+
+                    </div>
+                <!-- /.box (chat box) -->
+                </div>
+{% endblock %}
+{% block additionalScript %}
+
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+    });
+</script>
+<script src="{% static 'dist/js/comments.js' %}"></script>
+{% endblock %}

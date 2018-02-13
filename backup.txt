@@ -1,0 +1,24 @@
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <textarea class="textarea" placeholder="Message" style="width: 100%; height: 80px; font-size: 12px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+
+    <a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>Alexander Pierce</a>
+
+    <br><div class="input-group input-group-sm"><input class="form-control" placeholder="Type message..." width="60px">
+                                <span class="input-group-btn"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button></span></div>
+
+    <div class="attachment"><h4>Attachments:</h4><p class="filename"></p>
+    <div class="pull-right"><a href="#" style="font-size: 10px">回复</a></div></div>
+
+    <script src="{% static 'editor-md/lib/marked.min.js'%}"></script>
+<script src="{% static 'editor-md/lib/prettify.min.js'%}"></script>
+<script src="{% static 'editor-md/lib/raphael.min.js'%}"></script>
+<script src="{% static 'editor-md/lib/underscore.min.js'%}"></script>
+<script src="{% static 'editor-md/lib/sequence-diagram.min.js'%}"></script>
+<script src="{% static 'editor-md/lib/flowchart.min.js'%}"></script>
+<script src="{% static 'editor-md/lib/jquery.flowchart.min.js'%}"></script>

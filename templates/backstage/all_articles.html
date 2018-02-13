@@ -1,0 +1,176 @@
+{% extends 'backstage/generic.html' %}
+{% load staticfiles %}
+{% block title %}所有文章-ONE Blog{% endblock %}
+
+{% block content %}
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            所有文章
+        </h1>
+        <ol class="breadcrumb">
+                    <li><a href="{% url 'backstage:published_articles' %}"><i class="fa fa-angle-double-right"></i>已发布文章</a></li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+                        <button id="deleteArticles" class="btn btn-default btn-xs">删除</button>
+                        <button id="allCheck" class="btn btn-default btn-xs">全选</button>
+						<div class="box-tools">
+							<div class="input-group input-group-sm" style="width: 150px;">
+								<input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover" style="text-align: center">
+							<tr>
+                                <th width="4%" style="text-align: center;">
+                                    选择
+                                </th>
+                                <th width="5%" style="text-align: center">No.</th>
+                                <th width="" style="text-align: center">文章标题</th>
+                                <th width="10%" style="text-align: center">文章类型</th>
+                                <th width="10%" style="text-align: center">状态</th>
+                                <th width="12%" style="text-align: center">创建时间</th>
+                                <th width="12%" style="text-align: center">最近修改时间</th>
+                                <th width="3%" style="text-align: center"></th>
+							</tr>
+                            {% for article in articles %}
+
+                            <tr>
+                                {% if article.status == 2 %}
+                                <td><i class="fa fa-square"></i></td>
+                                {% else %}
+                                <td><input type="checkbox" value="{{ article.article_id }}" name="check"/></td>
+                                {% endif %}
+                                <td>{{ forloop.counter }}</td>
+								<td>{{ article.title }}</td>
+                                <td><span class="label label-default">{{ article.get_type_display }}</span></td>
+                                <td>
+                                    {% if article.status == 0 %}
+                                    <span class="label label-danger">已删除</span>
+                                    {% elif article.status == 1 %}
+                                    <span class="label label-primary">编辑中</span>
+                                    {% elif article.status == 2 %}
+                                    <span class="label label-success">已发布</span>
+                                    {% else %}
+                                    <span class="label label-default">未知</span>
+                                    {% endif %}
+                                </td>
+                                <td style="color: gray"><span class="badge">{{ article.created_time|date:"Y-m-d H:i:s" }}</span></td>
+								<td style="color: gray"><span class="badge">{{ article.latest_modify_time|date:"Y-m-d H:i:s" }}</span></td>
+                                <td><a class="fa fa-pencil-square-o" href="{% url 'backstage:to_edit_from_all' article.article_id %}"></a></td>
+
+							</tr>
+                            {% endfor %}
+						</table>
+					</div>
+
+					<div class="box-footer clearfix">
+
+						<ul class="pagination pagination-sm no-margin pull-right">
+						<li>
+                                {% if articles.has_previous %}
+                                <a href="{% url 'backstage:all_articles_pages' articles.previous_page_number %}">&laquo;</a>
+                                {% else %}
+                                <a href="#">&laquo;</a>
+                                {% endif %}
+                            </li>
+                            {% for page in pages %}
+                                {% if page == articles.number %}
+                                <li><a class="active" href="#">{{ page }}</a></li>
+                                {% else %}
+							    <li><a href="{% url 'backstage:all_articles_pages' page %}">{{ page }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+							<li>
+                                {% if articles.has_next %}
+                                <a href="{% url 'backstage:all_articles_pages' articles.next_page_number %}">&raquo;</a>
+                                {% else %}
+                                <a href="#">&raquo;</a>
+                                {% endif %}
+                            </li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+    </section>
+    <!-- /.content -->
+{% endblock %}
+{% block additionalScript %}
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+    });
+
+    var checked = false;
+    $("#allCheck").click(function () {
+
+        if (checked) {
+            checked = false;
+            $("#allCheck").html("全选");
+        } else {
+            checked = true;
+            $("#allCheck").html("取消全选");
+        }
+
+        var checks=document.getElementsByName("check");
+        for(var i=0;i<checks.length;i++){
+            checks[i].checked=checked;
+        }
+    });
+
+    $("#deleteArticles").click(function () {
+
+        var deleteArticles = [];
+        var cks=document.getElementsByName("check");
+        for(var i=0;i<cks.length;i++){
+            if (cks[i].checked) {
+                deleteArticles.push(cks[i].value);
+            }
+        }
+
+        if (deleteArticles.length > 0){
+            if (!confirm("你确定要删除所选择的文章吗？")){
+                return;
+            }
+            var sendData = {'delete_articles': deleteArticles};
+            console.log(sendData);
+            $.ajax({
+                url: "{% url 'backstage:to_delete_from_all' %}",
+                type: 'POST',
+                traditional: true,
+                data: sendData,
+                dataType: 'text',
+                success: function (result) {
+                    alert(result);
+                    window.location.href = "{% url 'backstage:all_articles' %}";
+                },
+                error: function (e) {
+                    alert(e);
+                }
+            })
+
+        } else {
+            alert("未选择要删除的文章");
+        }
+
+    });
+
+</script>
+{% endblock %}

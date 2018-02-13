@@ -1,0 +1,88 @@
+{% extends 'blog/basic.html' %}
+{% load staticfiles %}
+{% block title %}徐一凡的博客{% endblock %}
+{% block content_header %}
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            博客主页
+            <small>Version 1.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block content_body %}
+    {% for puba in all_pubas %}
+    <div class="box box-solid">
+        <div class="box-header">
+            <h3>{{ puba.title }}</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body text-gray">
+            {% if puba.abstract|length > 0%}
+            <div id="abstract" style="padding: 10px">
+                <p>{{ puba.abstract|truncatechars:300 }}</p>
+            </div>
+            {% endif %}
+            <a href="{{ puba.link }}">阅读全文<i class="fa fa-angle-double-right"></i></a>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <table width="70%" style="color: gray">
+                <tr>
+                    {% if puba.type == 'original' %}
+                    <td width="9%"><span class="badge">原创</span></td>
+                    {% elif puba.type == 'reprint' %}
+                    <td width="9%"><span class="badge">转载</span></td>
+                    {% elif puba.type == 'translation' %}
+                    <td width="9%"><span class="badge">翻译</span></td>
+                    {% endif %}
+                    <td width="9%"><span class="fa fa-thumbs-up">&nbsp;</span>{{ puba.votes }}</td>
+                    <td width="9%"><span class="fa fa-eye">&nbsp;</span>{{ puba.visitor }}</td>
+                    <td width="9%"><span class="fa fa-commenting-o">&nbsp;</span>{{ puba.comments }}</td>
+                    <td width="30%"><span class="fa fa-clock-o">&nbsp;</span>{{ puba.pub_time }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- /.box -->
+    {% endfor %}
+
+    <div class="text-center">
+        <ul class="pagination">
+
+            <li>
+                {% if current_page == 1 %}
+                <a>
+                {% else %}
+                <a href="{% url 'blog:get_all_published_articles' p=current_page|add:-1 %}">
+                {% endif %}
+                    &laquo;
+                </a>
+            </li>
+
+            {% for page in total_pages %}
+            <li>
+                {% if page == current_page %}
+                    <a class="active bg-blue">
+                {% else %}
+                    <a href="{% url 'blog:get_all_published_articles' p=page %}">
+                {% endif %}
+                    {{ page }}</a>
+            </li>
+            {% endfor %}
+            <li>
+                {% if current_page == total_pages.last %}
+                <a>
+                {% else %}
+                <a href="{% url 'blog:get_all_published_articles' p=current_page|add:1 %}">
+                {% endif %}
+                    &raquo;
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

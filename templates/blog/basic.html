@@ -1,0 +1,260 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}ONE Blog{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/skins/skin-blue.min.css' %}">
+    <link rel="stylesheet" href="{% static 'editor-md/css/editormd.css' %}">
+    {% block additionalCss %}{% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-black-light layout-top-nav">
+<div class="wrapper">
+
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <b class="navbar-brand">ONE</b>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'blog:blog_index' %}">博客<span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="http://106.14.186.63/fm">FM</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/ip">IP归属地查询</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">More pages coming soon</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+                        </div>
+                    </form>
+                </div>
+                <!-- /.navbar-collapse -->
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" data-toggle="modal" data-target="#loginModal">登录</a></li>
+                        <!-- User Account Menu -->
+{#                        <li class="dropdown user user-menu">#}
+{#                            <!-- Menu Toggle Button -->#}
+{#                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{#                                <!-- The user image in the navbar-->#}
+{#                                <img src="{% static 'dist/img/user3-160x160.jpg' %}" class="user-image" alt="User Image">#}
+{#                                <span class="hidden-xs">徐一凡</span>#}
+{#                            </a>#}
+{#                            <ul class="dropdown-menu">#}
+{#                                <!-- Menu Footer-->#}
+{#                                <li class="user-footer">#}
+{#                                    <div class="pull-left">#}
+{#                                        <a href="#" class="btn btn-default btn-flat">切换账号</a>#}
+{#                                    </div>#}
+{#                                    <div class="pull-right">#}
+{#                                        <a href="#" class="btn btn-default btn-flat">注销</a>#}
+{#                                    </div>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </li>#}
+
+                    </ul>
+                </div>
+                <!-- /.navbar-custom-menu -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+        <div class="container">
+            {% block content_header %}
+
+            {% endblock %}
+
+            <!-- Main content -->
+            <section class="content">
+                <!--row-->
+                <div class="row">
+                    <!--col-->
+                    <div class="col-md-9" >
+                        {% block content_body %}
+
+                        {% endblock %}
+                    </div>
+                    <!--/.col-->
+
+                    <!--col-->
+                    <div class="col-md-3">
+
+                        <!-- Widget: user widget style 1 -->
+                        <div class="box box-widget widget-user-2">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header bg-light-blue ">
+                                <div class="widget-user-image">
+                                    <img class="img-circle" src="{% static 'dist/img/user3-160x160.jpg' %}" alt="User Avatar">
+                                </div>
+                                <!-- /.widget-user-image -->
+                                <h3 class="widget-user-username">Evan Xu</h3>
+                                <h5 class="widget-user-desc">Rookie Coder</h5>
+                            </div>
+                            <div class="box-footer no-padding text-bold">
+                                <ul class="nav nav-stacked">
+                                    <li><a href="#"><span class="fa fa-file-text">&nbsp;</span>CSDN</a></li>
+                                    <li><a href="#"><span class="fa fa-github">&nbsp;</span>GitHub</a></li>
+                                    <li><a href="#"><span class="fa fa-envelope-o">&nbsp;</span>Email<small class="pull-right">yifan_xu6@163.com</small></a></li>
+                                    <li><a href="#"><span class="fa fa-map-marker">&nbsp;</span>Nanjing</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.widget-user -->
+
+                        <div id="latest-articles-box" class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">最新文章</h3>
+                                <span class="pull-right text-info">
+                                    <a href="/blog/a/1/">更多文章</a>
+                                </span>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="color: gray">
+                                <ul class="list-unstyled">
+
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="overlay">
+                                <i class='fa fa-refresh fa-spin'></i>
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                        <div id="popular-articles-box" class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">最热文章</h3>
+                                <span class="pull-right text-info">热度</span>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="color: gray">
+                                <ul class="list-unstyled">
+
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="overlay">
+                                <i class='fa fa-refresh fa-spin'></i>
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                        <div id="category-box" class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">文章分类</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="color: gray">
+                                <ul class="list-unstyled">
+
+                                </ul>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="overlay">
+                                <i class='fa fa-refresh fa-spin'></i>
+                            </div>
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!--/.col-->
+                </div>
+                <!--/.row-->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+
+        <!-- Default to the left -->
+        <strong>Copyright
+            <a href="{% url 'backstage:index' %}">&copy;</a>
+            2018
+            <a href="https://weibo.com/u/3014543753">Evan.Xu</a>
+            .
+        </strong> All rights reserved.
+        <strong>Powered by&nbsp;&nbsp;</strong>
+        <a href="https://www.djangoproject.com/">
+            <img src="/static/dist/img/django-ico.png" width="16" height="16" class="img-circle">
+            &nbsp;Django</a>&nbsp;and&nbsp;
+        <a href="https://adminlte.io/">
+            <img src="/static/dist/img/adminlite-ico.png" width="16" height="16" class="img-circle">
+            &nbsp;AdminLite
+        </a>
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!--loginModal-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+   aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="loginModalLabel">
+                    登录
+                </h4>
+            </div>
+            <div class="modal-body">
+                在这里添加一些文本
+            </div>
+            <div class="modal-footer">
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<!--./loginModal-->
+
+<!-- jQuery 3 -->
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'bower_components/fastclick/lib/fastclick.js'%}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js'%}"></script>
+<script src="{% static 'dist/js/demo.js'%}"></script>
+<script src="{% static 'dist/js/sideInfo.js'%}"></script>
+{% block additionalScript %}{% endblock %}
+</body>
+</html>
