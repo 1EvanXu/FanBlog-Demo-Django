@@ -1,0 +1,53 @@
+先从评论中加载pub_id = pubId 和 parent_comment= null的，按时间顺序排序(时间晚的在前面)，存在一个列表中，
+再遍历这些评论，加载这些评论的child_comment，按时间顺序排序（时间早的在前面）,
+[
+	no_parent_comment1-{
+		commentator: 'commentator(string)',
+		comment_time: 'datetime(datetime)',
+		comment_content: 'content(string)',
+		child_comment: [
+			child_comment1-{
+				commentator: 'commentator(string)',
+				comment_time: 'datetime(datetime)',
+				comment_content: 'content(string)',
+				reply_to: 'reply_commentator'
+			},
+			
+			....
+			
+			
+		]
+	},
+
+	......
+				
+
+]
+
+
+待完成工作：
+博客编辑器完整界面 completed
+社交网站账号接入登录
+关于session和cookie的完善 completed
+访客ip登记与所属地区登记[completed] 
+后台管理中的category部分的修改完善
+发布文章部分中，加入即时添加分类的功能
+
+关于ｉｐ地址归属地查询，从后台部分独立成一个单独的应用 completed
+后台登录 [completed]
+权限功能的完善
+
+后台信息统计界面的最后收尾
+｛
+	１访问量统计图形的完成
+	２访客，地区分布的统计图的完成
+｝
+
+设计网站logo
+
+增加一个about me功能，里面存放自己的网页版的简历，并做一个可自动更新信息的功能，
+并且可以考虑，设置一定的观看权限。链接在顶栏添加，和侧边栏
+
+增加博客前台的的留言功能，和后台的处理显示留言功能。
+
+对博客文章显示的css样式进行调整，使其更美观
