@@ -21,7 +21,8 @@ def statistics(request):
         'article_total_num': article_total_num,
         'popular_articles': popular_articles,
         'total_votes': total_votes,
-        'latest_comments': latest_comments
+        'latest_comments': latest_comments,
+        'total_visit': get_total_visit()
     }
     print(context)
     return render(request, 'backstage/statistics.html', context)
@@ -88,6 +89,16 @@ def get_popular_articles():
         pass
 
     return popular_articles
+
+
+def get_total_visit():
+    total_visit = 0
+    try:
+        conn = get_redis_connection()
+        total_visit = conn.zcard('visitors_records:')
+    except RedisError:
+        pass
+    return total_visit
 
 
 def get_total_votes():
