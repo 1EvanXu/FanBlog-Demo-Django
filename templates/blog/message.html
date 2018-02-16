@@ -1,0 +1,80 @@
+{% extends 'blog/basic.html' %}
+{% load staticfiles %}
+{% block title %}写留言－FAN Blog{% endblock %}
+
+{% block content_header %}{% endblock %}
+
+{% block content_body %}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">写留言</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <input id="message-subject" class="form-control" placeholder="主题：">
+            </div>
+            <div class="form-group">
+                <input id="message-writer" class="form-control" placeholder="名字：">
+            </div>
+            <div class="form-group">
+                <input id="concat-info" class="form-control" placeholder="联系方式：">
+            </div>
+            <div class="form-group">
+                <textarea id="compose-textarea" class="form-control" style="height: 400px">
+
+                </textarea>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div class="pull-right">
+                <button id="compose-message" type="button" class="btn btn-primary"><i class="fa fa-paper-plane-o"></i>提交留言</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block additionalScript %}
+    <script src="{% static 'dist/js/csrf.js' %}"></script>
+    <script>
+        $("#compose-message").click(function () {
+           var msgSubject = $("#message-subject").val();
+           var msgWriter = $("#message-writer").val();
+           var concatInfo = $("#concat-info").val();
+           var message = $("#compose-textarea").val();
+
+           if (msgSubject.length === 0) {
+
+               alert("主题不能为空!");
+               return;
+           }
+
+           if (msgWriter.length === 0 || concatInfo.length === 0) {
+               alert("请留下您的姓名和联系方式!");
+               return;
+           }
+
+           if (message.length === 0 ) {
+               alert("留言内容不能为空！");
+               return;
+           }
+
+           $.ajax({
+              url: '/blog/message/compose/',
+              type: 'POST',
+              data: {
+                  'subject': msgSubject,
+                  'writer': msgWriter,
+                  'concat_info': concatInfo,
+                  'message': message
+              },
+              dataType: 'text',
+              success: function (r) {
+                  alert(r);
+              },
+              error: function () {
+                  alert("留言失败 :(");
+              }
+           });
+        });
+    </script>
+{% endblock %}

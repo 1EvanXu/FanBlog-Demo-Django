@@ -46,6 +46,14 @@ upload_patterns = [
     path('image/', views.image_upload, name="image_upload"),
 ]
 
+message_box_patterns = [
+    path('', views.message_box, name="message_box"),
+    path('p/<int:p>/', views.message_box, name="message_pages"),
+    path('read/<int:message_id>/', views.read_message, name="read_message"),
+    path('delete/', views.delete_message, name="delete_message"),
+    path('stat/', views.change_stat, name="change_state"),
+]
+
 urlpatterns = [
     path('', views.statistics, name="index"),
     path('login/', views.login, name='login'),
@@ -57,6 +65,6 @@ urlpatterns = [
     path('articles/', include(articles_patterns)),
     re_path("(?P<dt>(draft|trash))/(?P<p>\d*)/", views.draft_and_trash, name="draft_and_trash"),
     path('upload/', include(upload_patterns)),
-
+    path('message/', include(message_box_patterns))
 ]
 

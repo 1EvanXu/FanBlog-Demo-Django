@@ -78,3 +78,18 @@ class Comment(models.Model):
         app_label = 'backstage'
         db_table = 'comments'
         verbose_name = '文章中的评论'
+
+
+class Message(models.Model):
+
+    subject = models.CharField(max_length=50)
+    writer = models.CharField(max_length=20)
+    concat_info = models.CharField(max_length=50)
+    message = models.TextField()
+    readed = models.BooleanField(default=False)
+    compose_time = models.DateTimeField(auto_now=True, editable=False)
+
+    class Meta:
+        app_label = 'backstage'
+        db_table = 'messages'
+        verbose_name = '博客留言'

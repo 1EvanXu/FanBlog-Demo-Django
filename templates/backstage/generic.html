@@ -173,6 +173,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                 </li>
                 <li>
+                    <a href="{% url 'backstage:message_box'%}">
+                        <i class="fa fa-inbox"></i>
+                        <span>留言箱</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{% url 'backstage:draft_and_trash' dt='trash' p=1 %}">
                         <i class="fa fa-trash"></i>
                         <span>回收站</span>
