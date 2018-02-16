@@ -60,12 +60,3 @@ def get_system_info():
         'upload_ratio': bytes2human(get_net_io_state()[0]),
         'download_ratio': bytes2human(get_net_io_state()[0])
     }
-
-
-if __name__ == '__main__':
-    print(get_cpu_state())
-    print(get_memory_state())
-    tot_before = psutil.net_io_counters()
-    net = get_net_io_state()
-    print(bytes2human(net[0]) + "/s")
-    print(bytes2human(net[1]) + "/s")

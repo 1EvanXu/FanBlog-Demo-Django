@@ -15,6 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/css/skins/skin-blue.min.css' %}">
+    <link href="/static/favicon-16x16.ico" rel="bookmark" type="image/x-icon" />
+    <link href="/static/favicon-32x32.ico" rel="icon" type="image/x-icon" />
+    <link href="/static/favicon-16x16.ico" rel="shortcut icon" type="image/x-icon" />
     {% block additionalCss %}{% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,13 +98,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
-                    <!-- User Account Menu  user user-menu-->
                     <li class="dropdown">
-                        <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <!-- The user image in the navbar-->
                             <span id="administrator" class="fa fa-user"></span>
-                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -127,11 +126,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{%  static 'dist/img/user3-160x160.jpg' %}" class="img-circle" alt="User Image">
+                    <img id="admin-sidebar-img" src="/static/dist/img/user-default.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>徐一凡</p>
-                    <!-- Status -->
+                    <p id="admin-sidebar"></p>
                     <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
                 </div>
             </div>

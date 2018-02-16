@@ -7,6 +7,8 @@ function getNavBarInfo() {
     var target = '/back/statistics/nav/';
     $.get(target, function(r){
         $("#administrator").html("&nbsp;" + r.admin);
+        $("#admin-sidebar").html(r.admin);
+        $("#admin-sidebar-img").attr("src", r.adminImg);
         var tasksMenu = $("#tasks-menu");
         tasksMenu.children('a').children('span').html(r.uncompleted);
         var tasksDropDownMenu = tasksMenu.children('ul.dropdown-menu');

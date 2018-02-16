@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.db import OperationalError, DatabaseError
 from redis import RedisError
-from backstage.models import PublishedArticle, Article, get_redis_connection, hgetall_pub_article, Comment
+from backstage.models import PublishedArticle, Article, get_redis_connection, hgetall_pub_article, Comment, Manager
 from backstage.views.system_info import get_system_info
 
 
@@ -41,7 +41,8 @@ def nav_info(request):
         task_info = {
             'uncompleted': 0,
             'percentage': 100,
-            'admin': ''
+            'admin': '',
+            'adminImg': ''
         }
 
         try:
@@ -52,6 +53,10 @@ def nav_info(request):
             task_info['uncompleted'] = draft_articles_num
             task_info['percentage'] = percentage
             task_info['admin'] = request.session.get('admin').get('name')
+
+            if task_info['admin']:
+                manager = Manager.objects.get(name=task_info['admin'])
+                task_info['adminImg'] = manager.image
         except DatabaseError:
             pass
 

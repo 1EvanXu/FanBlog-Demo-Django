@@ -7,6 +7,7 @@ class Manager(models.Model):
     password = models.CharField(max_length=16, unique=True, null=False, blank=False)
     email = models.EmailField()
     level = models.CharField(max_length=9, default='common')
+    image = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return "[" + self.name + ", " + self.email + "]"
