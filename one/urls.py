@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('blog/', include('blog.urls')),
     path('ip/', include('ip.urls')),
+    path('favicon.ico', RedirectView.as_view(url='static/favicon.ico'))
 ]
 
 handler400 = views.bad_request

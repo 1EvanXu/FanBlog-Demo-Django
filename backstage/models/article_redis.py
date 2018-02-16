@@ -178,7 +178,6 @@ def update_counter(count=1, name='hit', conn=CONNECTION):
     pipe.execute()
 
 
-
 def get_counter(precision, name='hit', conn=CONNECTION):
     h = '%s:%s' % (precision, name)
     data = conn.hgetall('count:' + h)

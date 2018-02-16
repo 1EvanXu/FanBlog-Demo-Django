@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>登录－ONE BLOG后台管理系统</title>
+  <title>登录－FAN BLOG后台管理系统</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
@@ -33,12 +33,12 @@
 <div class="login-box" style="padding-top: 100px">
 
   <div class="login-logo">
-    <a href="{% url 'blog:blog_index' %}"><b>ONE</b>Blog</a>
+    <a href="{% url 'blog:blog_index' %}"><b>FAN</b>Blog</a>
   </div>
 
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">欢迎来到ONE Blog后台管理系统</p>
+    <p class="login-box-msg">欢迎来到FAN Blog后台管理系统</p>
     {% if message %}
         <p class="text-center text-red">{{ message }}</p>
     {% endif %}

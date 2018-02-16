@@ -1,6 +1,6 @@
 {% extends 'blog/basic.html' %}
 {% load staticfiles %}
-{% block title %}徐一凡的博客{% endblock %}
+{% block title %}{{ title|truncatechars:20 }}-FAN Blog{% endblock %}
 {% block content_header %}{% endblock %}
 
 {% block content_body %}
