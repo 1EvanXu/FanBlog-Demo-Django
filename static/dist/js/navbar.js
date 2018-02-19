@@ -25,5 +25,17 @@ function getNavBarInfo() {
         tasksDropDownMenuBody.find('small.pull-right').html(r.percentage + '%');
         tasksProgress.css("width", r.percentage + "%");
         tasksProgress.children('span').html(r.percentage + "completed");
+
+        var messageMenu = $("#messages-menu");
+        var messageCountLabel = messageMenu.children('a.dropdown-toggle').children('span');
+        var messageDropdownMenu = messageMenu.children('ul.dropdown-menu');
+        messageCountLabel.html(r.unreadMsgNum);
+        messageDropdownMenu.empty();
+        if (r.unreadMsgNum === 0){
+            messageDropdownMenu.html("<li class=\"header\">" + "没有新的留言" + "</li>");
+        } else {
+            messageDropdownMenu.html("<li class=\"header\">您还有" + r.unreadMsgNum + "条留言未读</li>" +
+                "<li class=\"footer\"><a href=\"/back/message/\">查看所有留言>></a></li>");
+        }
     })
 }

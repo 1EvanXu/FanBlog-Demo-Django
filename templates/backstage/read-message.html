@@ -1,0 +1,55 @@
+{% extends 'backstage/generic.html' %}
+{% load staticfiles %}
+{% load humanize %}
+{% block title %}{{ message.writer }}的留言-FAN Blog{% endblock %}
+
+{% block additionalCss %}
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'bower_components/iCheck/flat/blue.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            查看留言
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'backstage:message_box' %}"><i class="fa fa-angle-double-right"></i>留言箱</a></li>
+        </ol>
+    </section>
+
+    <section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+
+                        <a href="#" class="btn btn-box-tool btn-sm pull-left" data-toggle="tooltip" title="上一条"><i class="fa fa-chevron-left"></i></a>
+                        <a href="#" class="btn btn-box-tool btn-sm pull-right" data-toggle="tooltip" title="下一条"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="mailbox-read-info">
+                            <h3>{{ message.subject }}</h3>
+                            <h5>From: {{ message.concat_info }}
+                            <span class="mailbox-read-time pull-right">{{ message.compose_time }}</span></h5>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+
+                        <div class="mailbox-read-message">
+                            {% for m in msg_content %}
+                            <p>{{ m }}</p>
+                            {% endfor %}
+                        </div>
+                      <!-- /.mailbox-read-message -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /. box -->
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

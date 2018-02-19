@@ -2,7 +2,6 @@ from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.db import DatabaseError
 from django.http import HttpResponse
 from django.shortcuts import render
-
 from backstage.models import Message
 
 
@@ -10,7 +9,7 @@ def message_box(request, p=1):
     context = {}
     try:
         messages = Message.objects.order_by('-compose_time')
-        paginator = Paginator(messages, 10)
+        paginator = Paginator(messages, 12)
         try:
             messages_in_page = paginator.page(p)
         except PageNotAnInteger:
@@ -28,7 +27,20 @@ def message_box(request, p=1):
 
 
 def read_message(request, message_id):
-    pass
+
+    context = {'message': '', 'msg_content': ''}
+    try:
+        msg = Message.objects.get(pk=message_id)
+        if not msg.readed:
+            msg.readed = True
+            msg.save()
+
+        context['message'] = msg
+
+        context['msg_content'] = msg.message.split('\n')
+    except DatabaseError:
+        pass
+    return render(request, 'backstage/read-message.html', context)
 
 
 def delete_message(request):

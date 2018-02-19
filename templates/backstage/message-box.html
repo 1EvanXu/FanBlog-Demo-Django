@@ -1,5 +1,6 @@
 {% extends 'backstage/generic.html' %}
 {% load staticfiles %}
+{% load humanize %}
 {% block title %}
     留言箱-FAN Blog
 {% endblock %}
@@ -25,7 +26,7 @@
 
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-sm checkbox-toggle">&nbsp;<i class="fa fa-square-o"></i>全选</button>
-                                <button id="mark-readed" type="button" class="btn btn-default btn-sm"><i class="fa fa-circle">&nbsp;</i>标记为已读</button>
+                                <button id="mark-readed" type="button" class="btn btn-default btn-sm"><i class="fa fa-circle text-gray">&nbsp;</i>标记为已读</button>
                                 <button id="delete-message" type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o">&nbsp;</i>删除</button>
                             </div>
                             <!-- /.btn-group -->
@@ -35,7 +36,7 @@
                                 <div class="btn-group">
                                     <a
                                             href="{% if messages.has_previous %}
-                                                  {% url 'backstage:message_pages' P=messages.previous_page_number %}
+                                                  {% url 'backstage:message_pages' p=messages.previous_page_number %}
                                                   {% else %}
                                                   #
                                                   {% endif %}"
@@ -43,7 +44,7 @@
                                         <i class="fa fa-chevron-left"></i>
                                     </a>
                                     <a href="{% if messages.has_next %}
-                                             {% url 'backstage:message_pages' P=messages.next_page_number %}
+                                             {% url 'backstage:message_pages' p=messages.next_page_number %}
                                              {% else %}
                                              #
                                              {% endif %}"
@@ -181,8 +182,7 @@
                 traditional: true,
                 data: sendData,
                 dataType: 'text',
-                success: function (result) {
-                    alert(result);
+                success: function () {
                     window.location.href = "/back/message/";
                 },
                 error: function (e) {
