@@ -1,0 +1,2 @@
+INSERT INTO django_one.managers (id, name, password, email, level, image) VALUES (1, '徐一凡', 'xyf123', 'xyf@one.com', 'supreme', '/static/dist/img/user3-160x160.jpg');
+INSERT INTO django_one.managers (id, name, password, email, level, image) VALUES (2, 'Admin', 'admin123', 'admin@one.com', 'common', '/static/dist/img/user-default.jpg');

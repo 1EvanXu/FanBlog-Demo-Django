@@ -1,0 +1,16 @@
+<ol>
+<li>你好啊</li></ol>
+<ul>
+<li>我很好<br><strong>今天天气不错啊</strong><br>其实你很好<br><img src="https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=2aeb4877c2177f3e0f34fa0d40ce3bb9/4afbfbedab64034f83d318c7a4c379310b551dd1.jpg" alt=""></ul>
+<pre><code class="lang-python">from django.http import HttpResponse
+import json
+
+
+def image_upload(request):
+    result = {
+        'success': 1,
+        'message': "上传成功",
+        'url': "http://127.0.0.1/img/180205.jpg"
+    }
+    return HttpResponse(json.dumps(result), status=200)
+</code></pre>

@@ -2,10 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46cdb9f7-22df-4e81-849c-05db2d29c053" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/1.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/2.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/3.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/4.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/6.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/7.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/html/8.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/images/images/09e6660893376bb8e28d51abb31372ae.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/images/images/67179cbdf9b04a926b3c3022000727ac.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/1.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/2.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/3.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/4.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/6.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/7.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/articles/markdown/8.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_articles.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_auth_group.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_auth_group_permissions.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_auth_permission.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_auth_user.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_auth_user_groups.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_auth_user_user_permissions.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_captcha_captchastore.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_categories.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_comments.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_django_admin_log.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_django_content_type.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_django_migrations.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_django_session.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_managers.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_messages.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/django_one_published_articles.sql" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data-dump/dump.rdb" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/backup.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/templates/temp/4.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/templates/test.html" afterPath="" />
       <change beforePath="$PROJECT_DIR$/博客项目记事.txt" afterPath="$PROJECT_DIR$/博客项目记事.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,64 +86,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="generic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/backstage/generic.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backstage/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="50" column="18" lean-forward="false" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="message-box.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/backstage/message-box.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="134" lean-forward="false" selection-start-line="28" selection-start-column="134" selection-end-line="28" selection-end-column="134" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="博客项目记事.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/博客项目记事.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+            <state relative-caret-position="57">
+              <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/dist/js/navbar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="article_view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backstage/views/article_view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#72#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -241,7 +220,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -379,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519053190620</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="delete something">
+      <created>1519133346505</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1519133346505</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -399,7 +385,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32103825" sideWeight="0.8395683" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3579235" sideWeight="0.4942446" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2568306" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2568306" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33093524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46402878" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -452,7 +438,8 @@
     <MESSAGE value="add favicon.ico, completed backstage sidebar admin display." />
     <MESSAGE value="message function completed 80%" />
     <MESSAGE value="complete message function" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete message function" />
+    <MESSAGE value="delete something" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete something" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -461,13 +448,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/backstage/statistics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/backstage/trash.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -695,7 +675,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/backstage/generic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
+        <state relative-caret-position="0">
           <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding />
         </state>
@@ -714,16 +694,8 @@
         <state relative-caret-position="935">
           <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
           <folding>
-            <element signature="e#0#72#0" expanded="true" />
+            <element signature="e#0#72#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/dist/js/navbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -749,10 +721,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/dist/js/navbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/b71d102f/7f93e691-7649-4bb4-91a1-06317cd40388/django_one.articles">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/博客项目记事.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        <state relative-caret-position="57">
+          <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
           <folding />
         </state>
       </provider>

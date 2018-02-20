@@ -1,0 +1,73 @@
+<p>快速排序是一种分治的递归算法，将数组a排序的基本算法由下列四步组成：</p>
+<ol>
+<li>如果a中的元素的个数是0或1，则返回。</li><li>取a中任意一元素v，称之为枢纽元（pivot）。</li><li>将a-{v}（a中其余元素）划分成两个不相交的集合：a1为比v小的元素的集合，a2为比v大的元素的集合。</li><li>返回{quickSort(a1)后跟v，继而返回quickSort(a2)}。</li></ol>
+<h3 id="h3-u9009u53D6u67A2u7EBDu5143"><a name="选取枢纽元" class="reference-link"></a><span class="header-link octicon octicon-link"></span>选取枢纽元</h3><ul>
+<li><strong>错误的方法</strong>：通常的、无知的选择是将第一个元素用作枢纽元。如果输入时随机的，那么这是可以接受的，而如果输入是反序的或者是预排序的，那么这样的枢纽元就产生一个劣质的分割，因为所有的元素不是都被划入a1就是都被划入a2。</li><li><strong>一种安全的做法</strong>：随机选取枢纽元。</li><li><strong>三数中值分割法</strong>：取左边元素，右边元素，中心位置元素，求三个数的中值。</li></ul>
+<h3 id="h3-u5206u5272u7B56u7565"><a name="分割策略" class="reference-link"></a><span class="header-link octicon octicon-link"></span>分割策略</h3><ol>
+<li>通过将枢纽元与最后的元素交换使得枢纽元离开被分割的数据段。</li><li>i指向第一个元素，j指向倒数第二个元素。</li><li>当i在j的左边时，将i右移，移过哪些小于枢纽的元素，并将j左移，移过那些大于枢纽的元素。</li><li>当i和j停止时，i指向一个大元素而j指向一个小元素，如果i在j的左边，那么将这两个元素互换。</li></ol>
+<hr>
+<pre><code>public static int partition(int []array,int lo,int hi){
+        //三数取中
+        int mid=lo+(hi-lo)/2;
+        if(array[mid]&gt;array[hi]){
+            swap(array[mid],array[hi]);
+        }
+        if(array[lo]&gt;array[hi]){
+            swap(array[lo],array[hi]);
+        }
+        if(array[mid]&gt;array[lo]){
+            swap(array[mid],array[lo]);
+        }
+        int key=array[lo];
+
+        while(lo&lt;hi){
+            while(array[hi]&gt;=key&amp;&amp;hi&gt;lo){
+                hi--;
+            }
+            array[lo]=array[hi];
+            while(array[lo]&lt;=key&amp;&amp;hi&gt;lo){
+                lo++;
+            }
+            array[hi]=array[lo];
+        }
+        array[hi]=key;
+        return hi;
+    }
+
+    public static void swap(int a,int b){
+        int temp=a;
+        a=b;
+        b=temp;
+    }
+    public static void sort(int[] array,int lo ,int hi){
+        if(lo&gt;=hi){
+            return ;
+        }
+        int index=partition(array,lo,hi);
+        sort(array,lo,index-1);
+        sort(array,index+1,hi);
+    }
+</code></pre><pre><code>public class BubbleSort{
+     public static void main(String[] args){
+         int score[] = {67, 69, 75, 87, 89, 90, 99, 100};
+         for (int i = 0; i &lt; score.length -1; i++){    //最多做n-1趟排序
+             for(int j = 0 ;j &lt; score.length - i - 1; j++){    //对当前无序区间score[0......length-i-1]进行排序(j的范围很关键，这个范围是在逐步缩小的)
+                 if(score[j] &lt; score[j + 1]){    //把小的值交换到后面
+                     int temp = score[j];
+                     score[j] = score[j + 1];
+                     score[j + 1] = temp;
+                 }
+             }            
+             System.out.print("第" + (i + 1) + "次排序结果：");
+             for(int a = 0; a &lt; score.length; a++){
+                 System.out.print(score[a] + "\t");
+             }
+             System.out.println("");
+         }
+             System.out.print("最终排序结果：");
+             for(int a = 0; a &lt; score.length; a++){
+                 System.out.print(score[a] + "\t");
+        }
+     }
+ }
+</code></pre>

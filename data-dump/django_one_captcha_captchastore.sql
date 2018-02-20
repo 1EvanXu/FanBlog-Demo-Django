@@ -1,0 +1,4 @@
+INSERT INTO django_one.captcha_captchastore (id, challenge, response, hashkey, expiration) VALUES (4, 'YKWZ', 'ykwz', '2b55dac42245eb305be2bd7a98b4972e06412d82', '2018-02-19 11:56:37.275398');
+INSERT INTO django_one.captcha_captchastore (id, challenge, response, hashkey, expiration) VALUES (5, 'RJJB', 'rjjb', '607f78e8035bbda6cc8c4acb47286cea04910467', '2018-02-19 11:56:58.299390');
+INSERT INTO django_one.captcha_captchastore (id, challenge, response, hashkey, expiration) VALUES (7, 'LEEC', 'leec', '67a4fd98a305ff22c6b1d75024ab065938c80553', '2018-02-19 15:19:51.790232');
+INSERT INTO django_one.captcha_captchastore (id, challenge, response, hashkey, expiration) VALUES (8, 'NXOX', 'nxox', 'c9d50a33bd4199aec90cf5f78858fcbd5c16ed3a', '2018-02-19 15:19:59.577417');

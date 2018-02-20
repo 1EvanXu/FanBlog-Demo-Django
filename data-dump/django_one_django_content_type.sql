@@ -1,0 +1,13 @@
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (1, 'admin', 'logentry');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (4, 'auth', 'group');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (3, 'auth', 'permission');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (2, 'auth', 'user');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (10, 'backstage', 'article');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (11, 'backstage', 'category');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (9, 'backstage', 'comment');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (7, 'backstage', 'manager');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (13, 'backstage', 'message');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (8, 'backstage', 'publishedarticle');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (12, 'captcha', 'captchastore');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (5, 'contenttypes', 'contenttype');
+INSERT INTO django_one.django_content_type (id, app_label, model) VALUES (6, 'sessions', 'session');
