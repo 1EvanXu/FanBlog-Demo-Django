@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import OperationalError, DatabaseError
-from django.http import Http404, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from backstage.models import Article, PublishedArticle, cancel_publish_in_redis, RedisError
 

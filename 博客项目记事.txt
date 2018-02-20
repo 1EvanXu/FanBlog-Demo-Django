@@ -24,6 +24,16 @@
 	
 ]
 
+依赖：
+django2.0
+pysql
+redis
+json(built-in)
+threadpool
+threading(built-in)
+psutil
+atexit
+
 
 待完成工作：
 博客编辑器完整界面 [completed]
