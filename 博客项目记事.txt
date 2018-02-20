@@ -29,9 +29,7 @@
 博客编辑器完整界面 [completed]
 社交网站账号接入登录
 关于session和cookie的完善 [completed]
-访客ip登记与所属地区登记[completed] 
-后台管理中的category部分的修改完善
-发布文章部分中，加入即时添加
+访客ip登记与所属地区登记[completed]
 
 关于ｉｐ地址归属地查询，从后台部分独立成一个单独的应用 [completed]
 后台登录 [completed]
