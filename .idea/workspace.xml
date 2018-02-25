@@ -391,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519529218411</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update 2018-2-25 11:30">
+      <created>1519529359204</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1519529359204</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -468,7 +475,8 @@
     <MESSAGE value="delete something" />
     <MESSAGE value="add dependency list" />
     <MESSAGE value="update 2018-2-24 21:00" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 2018-2-24 21:00" />
+    <MESSAGE value="update 2018-2-25 11:30" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 2018-2-25 11:30" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
