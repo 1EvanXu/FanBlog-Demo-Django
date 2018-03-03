@@ -21,6 +21,7 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', RedirectView.as_view(url='blog/')),
     path('back/', include('backstage.urls')),
     path('captcha/', include('captcha.urls')),
     path('blog/', include('blog.urls')),
