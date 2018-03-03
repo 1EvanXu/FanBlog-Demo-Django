@@ -26,7 +26,7 @@ SECRET_KEY = '0-wxxe(03qaf#wzh0j4e2ed!d9hh$5q+#ik0u23r+--!#&122k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', ]
+ALLOWED_HOSTS = ['127.0.0.1', '106.14.186.63']
 
 
 # Application definition
@@ -90,12 +90,6 @@ MYSQL_CONFIG = {
         'PORT': '3306',         # mysql服务端口
     }
 
-SQLITE_CONFIG = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-
-
 DATABASES = {
     'default': MYSQL_CONFIG
 }
@@ -144,6 +138,4 @@ STATICFILES_DIRS = [
 ]
 
 #log process
-LOGGING = {
-
-}
+LOGGING = { }

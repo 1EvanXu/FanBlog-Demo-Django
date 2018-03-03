@@ -123,7 +123,6 @@ def to_comment(request):
         except DatabaseError:
             result = "评论失败，无法连接数据库！"
 
-        time.sleep(2)
         return HttpResponse(result)
 
 

@@ -1,6 +1,9 @@
 {% extends 'blog/basic.html' %}
 {% load staticfiles %}
 {% block title %}{{ title|truncatechars:20 }}-FAN Blog{% endblock %}
+{% block additionalCss %}
+    <link rel="stylesheet" href="{% static 'dist/css/code-styles/github-gist.css' %}">
+{% endblock %}
 {% block content_header %}{% endblock %}
 
 {% block content_body %}
@@ -100,7 +103,8 @@
                 </div>
 {% endblock %}
 {% block additionalScript %}
-
+<script src="{% static 'dist/js/highlight.min.js' %}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script>
     $.ajaxSetup({
         data: {csrfmiddlewaretoken: '{{ csrf_token }}' }

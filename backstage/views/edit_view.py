@@ -16,7 +16,6 @@ def edit_article(request, new='edited', is_full=False):
     context = {}
     article_id = request.session.get("article_id")
 
-
     print("从SESSION中取出 article id ->", article_id)
     if new == 'edited':
         if article_id:
