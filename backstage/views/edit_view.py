@@ -170,7 +170,7 @@ def save_to_file(path, content, lock):
 def generate_article_id():
     try:
         article_id = Article.objects.last().article_id + 1
-    except (ObjectDoesNotExist, OperationalError, DatabaseError):
+    except (ObjectDoesNotExist, OperationalError, DatabaseError, AttributeError):
         article_id = generate_pub_id()
     print("generate_article_id()函数产生的 article id -> ", article_id)
     return article_id

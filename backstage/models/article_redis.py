@@ -41,7 +41,7 @@ def cancel_publish_in_redis(pub_id, conn=CONNECTION):
         pipe.delete('article_visitors_records:' + pub_id)
         pipe.zrem('articles_rank:', 'pub_article:' + pub_id)
         pipe.lrem('all_pub_articles:', 'pub_article:' + pub_id)
-        pipe.expire()
+        pipe.execute()
         print(pub_id, '-> 已经在Redis中删除')
     except RedisError:
         pass

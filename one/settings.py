@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'one.middleware.MultipleProxyMiddleware',
     'one.middleware.BlogInterceptor',
     'one.middleware.BackstageInterceptor',
 ]
@@ -137,5 +138,5 @@ STATICFILES_DIRS = [
     "/home/evan/articles/images/",
 ]
 
-#log process
-LOGGING = { }
+# log process
+# LOGGING = {}

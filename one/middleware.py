@@ -50,7 +50,7 @@ class BlogInterceptor(MiddlewareMixin):
 
             user = request.session.get('user', None)
             host_ip = request.get_host().partition(':')[0]
-            if host_ip != '127.0.0.1':  # or not host_ip.startswith('192.168'):
+            if host_ip != '127.0.0.1' or not host_ip.startswith('192.168'):
                 query_result = find_city_by_ip(host_ip)
                 if not query_result[0]:
                     query_result[0] = "其他"

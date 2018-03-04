@@ -71,8 +71,8 @@ class Comment(models.Model):
     commentator = models.CharField(max_length=50)
     comment_content = models.TextField()
     comment_time = models.DateTimeField(auto_now=True, editable=False)
-    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, related_name="child_comment")
-    reply = models.ForeignKey('self', on_delete=models.CASCADE, null=True, related_name="reply_to")
+    parent_comment = models.ForeignKey('self', on_delete=models.SET_DEFAULT, null=True, related_name="child_comment", default=None)
+    reply = models.ForeignKey('self', on_delete=models.SET_DEFAULT, null=True, related_name="reply_to", default=None)
 
     class Meta:
         app_label = 'backstage'
