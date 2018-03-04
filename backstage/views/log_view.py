@@ -32,7 +32,7 @@ def login_validate(request):
 
                 if login_password == manager.password:
                     request.session['admin'] = {'name': manager.name, 'level': manager.level}
-
+                    print(request.session['admin'])
                     # 如果登录时勾选了记住账户，则设置session存活时间为５天，　否则默认为6个小时
                     if is_remember == 'on':
                         request.session.set_expiry(432000)

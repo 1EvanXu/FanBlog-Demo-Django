@@ -50,7 +50,10 @@ def nav_info(request):
         try:
             draft_articles_num = Article.objects.filter(status=1).count()
             total_articles_num = Article.objects.all().count()
-            percentage = round((1 - (draft_articles_num / total_articles_num)) * 100)
+            if total_articles_num == 0:
+                percentage = 0
+            else:
+                percentage = round((1 - (draft_articles_num / total_articles_num)) * 100)
 
             task_info['uncompleted'] = draft_articles_num
             task_info['percentage'] = percentage
@@ -178,7 +181,7 @@ def get_pv_info(request, option):
                     pv_info['x'].append(datetime.fromtimestamp(float(k)).strftime("%H:%M"))
                     pv_info['y'].append(int(count_hits[k]))
 
-        print("1:", pv_info)
+            print("1:", pv_info)
 
         if option == 7:
             count_hits = conn.hgetall('count:86400:hit')
@@ -195,7 +198,7 @@ def get_pv_info(request, option):
                     pv_info['x'].append(datetime.fromtimestamp(float(k)).strftime("%m-%d"))
                     pv_info['y'].append(int(count_hits[k]))
 
-        print("7:", pv_info)
+            print("7:", pv_info)
 
         if len(pv_info['x']) == 0:
             pv_info['x'] = [i for i in range(7)]
