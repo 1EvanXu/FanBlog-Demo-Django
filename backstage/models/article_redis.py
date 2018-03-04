@@ -35,11 +35,13 @@ def publish_in_redis(pub_id, title, pub_type, category, link, abstract='', conn=
 def cancel_publish_in_redis(pub_id, conn=CONNECTION):
     pub_id = str(pub_id)
     try:
-        conn.delete('pub_article:' + pub_id)
-        conn.delete('voted:' + pub_id)
-        conn.delete('article_visitors_records:' + pub_id)
-        conn.zrem('article_rank:', 'pub_article:' + pub_id)
-        conn.lrem('all_pub_articles:', 'pub_article:' + pub_id)
+        pipe = conn.pipeline()
+        pipe.delete('pub_article:' + pub_id)
+        pipe.delete('voted:' + pub_id)
+        pipe.delete('article_visitors_records:' + pub_id)
+        pipe.zrem('articles_rank:', 'pub_article:' + pub_id)
+        pipe.lrem('all_pub_articles:', 'pub_article:' + pub_id)
+        pipe.expire()
         print(pub_id, '-> 已经在Redis中删除')
     except RedisError:
         pass
