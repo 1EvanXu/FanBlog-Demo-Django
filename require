@@ -1,0 +1,5 @@
+Django>=2.0
+psutil
+threadpool
+redis
+pymysql
